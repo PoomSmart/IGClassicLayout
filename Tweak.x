@@ -5,6 +5,12 @@ int (*IGExposePanoramaV2Variant)(id);
     return 0;
 }
 
+%hook IGDiscoveryTopReelsModel
++ (id)valueWithJSONDictionary:(id)arg1 objectStores:(id)arg2 error:(id *)arg3 {
+    return nil;
+}
+%end
+
 %ctor {
     NSString *frameworkPath = [NSString stringWithFormat:@"%@/Frameworks/FBSharedFramework.framework/FBSharedFramework", NSBundle.mainBundle.bundlePath];
     MSImageRef ref = MSGetImageByName([frameworkPath UTF8String]);
